@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Daten_einsehen{% endblock %}
+
+{% block content %}
+<form action="http://localhost:5000/Daten-einsehen" method="post">
+  <div class="container">
+      <p></p>
+      <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Nach Nachname, Vorname, Aboart oder Gültigkeit des Trainingsausweises suchen</label>
+      <input type="text" class="form-control" id="suche" name="suche" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">Suchen</button>
+  </div>
+</form>
+
+<div class="container-fluid"> 
+  <br>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">MitgliederID</th>
+          <th scope="col">Vorname</th>
+          <th scope="col">Nachname</th>
+          <th scope="col">Geschlecht</th>
+          <th scope="col">PLZ</th>
+          <th scope="col">Straße</th>
+          <th scope="col">Hausnummer</th>
+          <th scope="col">EMail</th>
+          <th scope="col">Telefonnummer</th>
+          <th scope="col">Geburtsdatum</th>
+          <th scope="col">Eintrittsdatum</th>
+          <th scope="col">Aboart</th>
+          <th scope="col">Notiz</th>
+          <th scope="col">Gültigkeit Trainingsausweis</th>
+          <th scope="col">Mitgliedsdauer in Tagen</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for Mitglied in data %}
+      <tr>
+          <th scope="row">{{ Mitglied[0] }}</th>
+          <td>{{ Mitglied[1] }}</td>
+          <td>{{ Mitglied[2] }}</td>
+          <td>{{ Mitglied[3] }}</td>
+          <td>{{ Mitglied[4] }}</td>
+          <td>{{ Mitglied[5] }}</td>
+          <td>{{ Mitglied[6] }}</td>
+          <td>{{ Mitglied[7] }}</td>
+          <td>{{ Mitglied[8] }}</td>
+          <td>{{ Mitglied[9] }}</td>
+          <td>{{ Mitglied[10] }}</td>
+          <td>{{ Mitglied[11] }}</td>
+          <td>{{ Mitglied[12] }}</td>
+          <td>{{ Mitglied[14] }}</td>
+          <td>{{ Mitglied[15] }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}

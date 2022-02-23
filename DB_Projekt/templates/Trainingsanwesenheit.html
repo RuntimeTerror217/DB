@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Trainingsanwesenheit{% endblock %}
+
+{% block content %}
+<form action="http://localhost:5000/Trainingsanwesenheit" method="post">
+  <div class="container">
+      <p></p>
+      <div class="mb-3">
+        <label for="inputZip" class="form-label">Datum der Anwesenheit</label>
+        <input type="date" class="form-control" id="Trainingsanwesenheit" name="Trainingsanwesenheit">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Mitglieder ID</label>
+        <input type="number" class="form-control" id="MitgliederID" name="MitgliederID" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+      <button type="submit" class="btn btn-primary" value="hinzufuegen" name="submit">Anwesenheit hinzufügen</button>
+      <div class="mb-3">
+        <br>
+        <label for="exampleInputEmail1" class="form-label">Mitglieder ID</label>
+        <input type="number" class="form-control" id="MitgliederIDsuchen" name="MitgliederIDsuchen" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+      <button type="submit" class="btn btn-primary" value="suchen" name="submit">Suchen</button>
+      <div class="mb-3">
+        <br>
+        <label for="exampleInputEmail1" class="form-label">Mitglieder ID</label>
+        <input type="number" class="form-control" id="MitgliederIDprüfen" name="MitgliederIDprüfen" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text"></div>
+      <button type="submit" class="btn btn-primary" value="pruefen" name="submit">Anwesenheitskreterien prüfen</button>
+  </div>
+</form>
+
+<div class="container-fluid"> 
+  <br>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">TrainingsanwesenheitID</th>
+          <th scope="col">MitgliederID</th>
+          <th scope="col">Datum</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for Trainingsanwesenheit in data %}
+      <tr>
+          <th scope="row">{{ Trainingsanwesenheit[0] }}</th>
+          <td>{{ Trainingsanwesenheit[1] }}</td>
+          <td>{{ Trainingsanwesenheit[2] }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}
