@@ -34,6 +34,53 @@ def Daten_einfuegen():
         mitglied_einfügen(mitglieder_daten)  
         return render_template("Eintrag_erfolgreich.html")
 
+@app.route('/Daten-ergaenzen', methods = ['GET', 'POST'])
+def Daten_ergaenzen():
+    if request.method == 'GET':
+        return render_template("Daten_ergaenzen.html")
+    else:
+        neue_daten = (
+            request.form['vorname'],
+            request.form['nachname'],
+            request.form['geschlecht'],
+            request.form['straße'],
+            request.form['hausnummer'],
+            request.form['plz'],
+            request.form['email'],
+            request.form['telefonnummer'],
+            request.form['abo'],
+            request.form['notiz'],
+            request.form['gueltigkeit'],
+            request.form['id']
+        )
+        print(neue_daten)
+        mitglied_ergaenzen(neue_daten)  
+        return render_template("Eintrag_erfolgreich.html")
+
+def mitglied_ergaenzen(neue_daten):
+    print(neue_daten)
+    conn = sqlite3.connect(db)
+    cur = conn.cursor()
+    sql_execute_string = ("""
+    UPDATE Mitglieder
+    SET 
+    vorname = ?,
+    nachname = ?,
+    geschlecht = ?,
+    straße = ?,
+    hausnummer = ?,
+    Postleitzahl = ?,
+    email = ?,
+    telefonnummer = ?,
+    Aboart = ?,
+    notiz = ?,
+    Gültigkeit_Trainingsausweis = ?
+    WHERE MitgliederID = ?
+    """)
+    cur.execute(sql_execute_string, (neue_daten))
+    conn.commit()
+    conn.close()
+
 @app.route('/Eintrag-erfolgreich')
 def Eintrag_erfolgreich():
     return render_template("Eintrag_erfolgreich.html")
